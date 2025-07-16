@@ -1,61 +1,143 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🏥 CRUD de Pacientes - Laravel API + JWT + Frontend Bootstrap
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Este proyecto es una aplicación completa que combina un backend en **Laravel** con autenticación **JWT** y un frontend interactivo utilizando **Bootstrap**, **JavaScript** y **DataTables**. Permite realizar operaciones CRUD sobre pacientes: crear, listar, editar y eliminar.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🔐 Autenticación
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+El sistema implementa autenticación mediante **JSON Web Token (JWT)**.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Endpoints:
 
-## Learning Laravel
+| Método | Endpoint      | Descripción              |
+|--------|---------------|--------------------------|
+| POST   | `/api/register` | Registro de usuario     |
+| POST   | `/api/login`    | Inicio de sesión (token)|
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Después del login, se debe incluir el token en las solicitudes:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Authorization: Bearer TU_TOKEN
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+yaml
+Copiar
+Editar
 
-## Laravel Sponsors
+---
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## 🚀 Instalación del proyecto
 
-### Premium Partners
+1. Clonar el repositorio:
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+```bash
+git clone https://github.com/Isa-GP/prueba-sinergia.git
+cd prueba-sinergia
+Instalar dependencias:
 
-## Contributing
+bash
+Copiar
+Editar
+composer install
+Crear y configurar .env:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+bash
+Copiar
+Editar
+cp .env.example .env
+php artisan key:generate
+php artisan jwt:secret
+Configurar conexión a base de datos en .env.
 
-## Code of Conduct
+Ejecutar migraciones y seeders:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+bash
+Copiar
+Editar
+php artisan migrate --seed
+Ejecutar el servidor:
 
-## Security Vulnerabilities
+bash
+Copiar
+Editar
+php artisan serve
+🧪 Endpoints de la API de Pacientes
+Requieren autenticación JWT.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Método	Endpoint	Descripción
+GET	/api/pacientes	Lista de pacientes
+GET	/api/pacientes/{id}	Ver un paciente
+POST	/api/pacientes	Crear paciente
+PUT	/api/pacientes/{id}	Actualizar paciente
+DELETE	/api/pacientes/{id}	Eliminar paciente
 
-## License
+Ejemplo de headers:
+json
+Copiar
+Editar
+{
+  "Authorization": "Bearer TU_TOKEN",
+  "Accept": "application/json",
+  "Content-Type": "application/json"
+}
+🎨 Interfaz Frontend
+Ubicada en resources/views/pacientes.blade.php.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Características:
+Login y registro con validación
+
+Visualización de pacientes con DataTables
+
+Formulario en modal para crear/editar pacientes
+
+Función de eliminar
+
+Búsqueda en tiempo real
+
+Validación de campos
+
+Tecnologías:
+Laravel Blade
+
+Bootstrap 5
+
+DataTables
+
+JavaScript (Fetch API)
+
+jQuery
+
+📁 Estructura Relevante
+pgsql
+Copiar
+Editar
+crud_sinergia/
+├── app/
+│   └── Http/
+│       ├── Controllers/
+│           ├── AuthController.php
+│           └── PacienteController.php
+├── routes/
+│   └── api.php
+├── resources/
+│   └── views/
+│       ├── login.blade.php
+│       └── pacientes.blade.php
+├── database/
+│   ├── migrations/
+│   └── seeders/
+✅ Requisitos
+PHP >= 8.1
+
+Composer
+
+Laravel 10
+
+MySQL o SQLite
+
+Node.js (opcional, para compilar assets)
+
+👩‍💻 Autora
+Maria Isabel González Polanco
+Tecnóloga en Análisis y Desarrollo de Software - SENA
+GitHub: Isa-GP
+
